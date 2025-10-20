@@ -22,6 +22,11 @@ x_train, x_test = x_train / 255.0, x_test / 255.0
 x_train = x_train.reshape(-1, 28, 28, 1)
 x_test = x_test.reshape(-1, 28, 28, 1)
 
+# Hypothetical Bug: Incorrect reshape causing dimension mismatch
+# Original: x_train = x_train.reshape(-1, 28, 28, 1)  # Correct
+# Buggy: x_train = x_train.reshape(-1, 28, 28)  # Missing channel dimension, will cause error in Conv2D
+# Fix: Ensure channel dimension is included
+
 # Step 2: Define the CNN model architecture
 model = models.Sequential([
     layers.Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1)),
@@ -36,7 +41,7 @@ model = models.Sequential([
 
 # Step 3: Compile the model
 model.compile(optimizer='adam',
-              loss='sparse_categorical_crossentropy',
+              loss='sparse_categorical_crossentropy',  # Fixed: Use sparse_categorical_crossentropy for integer labels
               metrics=['accuracy'])
 
 # Display model summary
@@ -91,3 +96,8 @@ plt.legend()
 
 plt.tight_layout()
 plt.show()
+
+# Step 8: Save the trained model
+print("\nSaving the trained model...")
+model.save('mnist_cnn_model.h5')
+print("Model saved as 'mnist_cnn_model.h5'")
