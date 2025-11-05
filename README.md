@@ -145,6 +145,8 @@ pip install streamlit-drawable-canvas==0.9.3
 pip install pillow==10.0.0
 pip install jupyter==1.0.0
 pip install notebook==6.5.4
+pip install nltk
+pip install textblob
 ```
 
 ### Step 4: Download spaCy Language Model
@@ -162,7 +164,7 @@ python -c "import spacy; print('spaCy version:', spacy.__version__)"
 
 ### Alternative: Using requirements.txt
 ```bash
-# Create requirements.txt with all dependencies
+# Install all dependencies from requirements.txt
 pip install -r requirements.txt
 ```
 
@@ -538,6 +540,7 @@ print("Model loaded successfully")
 ```
 AI-Tools-Assignment/
 ├── README.md                           # This comprehensive documentation
+├── requirements.txt                    # Python dependencies with versions
 ├── AI Tools Assignment.docx            # Original assignment guidelines
 ├── AI Tools and Applications.pdf       # Detailed report with answers and screenshots
 ├── mnist_cnn_model.h5                  # Trained MNIST model weights
